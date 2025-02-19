@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google" content="notranslate">
+    <meta name="description"
+        content="Ammar Abdul Malik, a student in Informatics Engineering, technology is my passion and dreaming about a better world with it and making it happen is a dream come true. I am generally into frontend web developer things but over the past few month I have begun learning about backend web developer using Laravel if you are interested, you can visit my projects here. Ouside coding, I often spend my time listening to music, watching animes and reading manga if you have any recommendations please don't hesitate to suggest them. I live in Bogor, West Java so in case you're around don't hesitate to contact me, perhaps we'll grab some coffee or do some collaboration.">
+    <meta name="keywords" content="Portfolio, Blog, Projects">
+    <meta name="author" content="Ammaricano">
+    <title>Ammar as ammaricano</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../public/css/style.css">
+    <link rel="stylesheet" href="../public/css/custom.css">
+
+    <!-- JS -->
+</head>
+
+<body class="">
+    <header id="header" class="fixed top-0 w-full h-16 z-50 bg-white shadow">
+        <div class="full h-full mx-auto px-10">
+            <div class="relative flex justify-center md:justify-between items-center h-full w-full">
+                <div class="gap-1 font-bold text-sm">
+                    <a href="/" class="flex items-center gap-1 transition-colors duration-300 ease-in-out text-xl">
+                        <h2 class="text-lg flex">AR<span class="text-violet-700">NIME</span></h2>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="pt-14">
+        <section class="px-5">
+            <div class="flex flex-col gap-4 min-h-screen overflow-hidden py-5" id="container">
+            </div>
+        </section>
+        <section class="text-center px-5 pt-14 pb-7 animate">
+            <p class="text-xs">
+                <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="underline">CC BY-NC-SA 4.0</a>
+                2024-PRESENT &copy; Ammar |
+                <a href="#" class="underline">Privacy Police</a>
+                |
+                <a href="#" class="underline">Disclaimer</a>
+                |
+                <a href="https://status.ammaricano.my.id" class="underline">Status</a>
+            </p>
+            <p class="text-xs">
+                Produdly created by
+                <a href="https://ammaricano.my.id" class="underline">ammaricano</a>
+                and Powered by
+                <a href="tailwindcss.com" class="underline">TailwindCSS</a>
+            </p>
+        </section>
+    </main>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/ldrs/dist/auto/ring.js"></script>
+    <script>
+        const apiURL = "https://asepharyana.cloud/api/anime";
+        const urlParams = new URLSearchParams(window.location.search);
+        const slug = urlParams.get('episode');
+        fetch(`${apiURL}/full/${slug}`, {
+            headers: { accept: "application/json" },
+        })
+            .then((res) => {
+                return res.json();
+            })
+            .then((data) => {
+                console.log(data);
+                let episode = data.data.episode;
+                let episode_number = data.data.episode_number;
+                let has_next_episode = data.data.has_next_episode;
+                let has_previous_episode = data.data.has_previous_episode;
+                let stream_url = data.data.stream_url;
+                let container = document.getElementById("container");
+                container.innerHTML = `
+                <div class="flex flex-col sm:flex-row justify-center gap-4 p-4">
+                    <h2 class="text-lg font-semibold">${episode}</h2>
+                    <div class="w-full h-0 pb-[56.25%] relative">
+    <!-- Gambar Poster -->
+    <iframe src="${stream_url}" frameborder="0" class="absolute top-0 left-0 w-full h-full"></iframe>
+</div>
+    <!-- Informasi Lebih Lanjut -->
+    <div class="flex flex-col gap-4">
+        <div id="pagination" class="flex justify-between">
+    <button id="previous" class="py-2 px-4 bg-gray-200 hover:bg-violet-700 hover:text-white rounded-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed">Previous</button>
+    <button id="next" class="py-2 px-4 bg-gray-200 hover:bg-violet-700 hover:text-white rounded-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed">Next</button>
+</div>
+
+        <div id="download">
+            <h2 class="text-lg font-bold">Download's</h2>
+        </div>
+    </div>
+</div>`
+
+                // Ambil elemen tombol
+                const previousButton = document.getElementById('previous');
+                const nextButton = document.getElementById('next');
+
+                // Menampilkan tombol Previous jika ada episode sebelumnya
+                if (has_previous_episode) {
+                    previousButton.disabled = false; // Mengaktifkan tombol Previous
+                    previousButton.onclick = function () {
+                        window.location.href = `index.html?episode=${data.data.previous_episode.slug.replace(/\/$/, "")}`; // Arahkan ke URL previous episode
+                    };
+                } else {
+                    previousButton.disabled = true; // Menonaktifkan tombol Previous
+                }
+
+                // Menampilkan tombol Next jika ada episode berikutnya
+                if (has_next_episode) {
+                    nextButton.disabled = false; // Mengaktifkan tombol Next
+                    nextButton.onclick = function () {
+                        window.location.href = `index.html?episode=${data.data.next_episode.slug.replace(/\/$/, "")}`; // Arahkan ke URL next episode
+                    };
+                } else {
+                    nextButton.disabled = true; // Menonaktifkan tombol Next
+                }
+
+                // Ambil elemen tempat kita akan menampilkan server
+                const downloadContainer = document.getElementById('download');
+
+                // Data download_urls
+                let downloadUrls = data.data.download_urls;
+
+                // Loop melalui setiap resolusi (360, 480, 720, dll.)
+                Object.keys(downloadUrls).forEach(resolution => {
+                    // Buat elemen untuk setiap resolusi
+                    const resolutionElement = document.createElement('div');
+                    resolutionElement.classList.add('mb-6');  // Menambahkan margin bawah untuk pemisah antar resolusi
+
+                    // Judul Resolusi
+                    const resolutionTitle = document.createElement('h3');
+                    resolutionTitle.classList.add('text-base', 'font-semibold', 'mb-4'); // Tambahkan gaya teks
+                    resolutionTitle.textContent = `Resolution: ${resolution}`;
+
+                    // Tambahkan judul resolusi ke dalam div resolusi
+                    resolutionElement.appendChild(resolutionTitle);
+
+                    // Buat div pembungkus untuk setiap server
+                    const serverWrapper = document.createElement('div');
+                    serverWrapper.classList.add('mb-2', 'flex', 'gap-4', 'flex-wrap'); // Menambahkan margin dan menyusun secara horizontal
+                    // Loop melalui setiap server di resolusi tersebut
+                    downloadUrls[resolution].forEach((entry, index) => {
+
+                        // Buat elemen untuk setiap server
+                        const serverElement = document.createElement('a');
+                        serverElement.href = `${entry.url}`;
+                        serverElement.classList.add(
+                            "py-2",
+                            "px-4",
+                            "bg-gray-200",
+                            "hover:bg-violet-700",
+                            "hover:text-white",
+                            "rounded-lg",
+                            "transition-all",
+                            "duration-300",
+                            "w-auto", // Mengatur lebar otomatis agar tidak memenuhi lebar layar
+                            "max-w-xs", // Membatasi lebar maksimum
+                            "text-center", // Memusatkan teks dalam link
+                            "text-sm"
+                        );
+                        serverElement.textContent = `${entry.server}`;
+
+                        // Tambahkan elemen server ke dalam div pembungkus
+                        serverWrapper.appendChild(serverElement);
+
+                        // Tambahkan div pembungkus ke dalam resolusi
+                        resolutionElement.appendChild(serverWrapper);
+                    });
+
+                    // Tambahkan bagian resolusi ke dalam container utama
+                    downloadContainer.appendChild(resolutionElement);
+                });
+            });
+    </script>
+</body>
+
+</html>

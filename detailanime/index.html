@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google" content="notranslate">
+    <meta name="description"
+        content="Ammar Abdul Malik, a student in Informatics Engineering, technology is my passion and dreaming about a better world with it and making it happen is a dream come true. I am generally into frontend web developer things but over the past few month I have begun learning about backend web developer using Laravel if you are interested, you can visit my projects here. Ouside coding, I often spend my time listening to music, watching animes and reading manga if you have any recommendations please don't hesitate to suggest them. I live in Bogor, West Java so in case you're around don't hesitate to contact me, perhaps we'll grab some coffee or do some collaboration.">
+    <meta name="keywords" content="Portfolio, Blog, Projects">
+    <meta name="author" content="Ammaricano">
+    <title>Ammar as ammaricano</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../public/css/style.css">
+    <link rel="stylesheet" href="../public/css/custom.css">
+
+    <!-- JS -->
+</head>
+
+<body class="">
+    <header id="header" class="fixed top-0 w-full h-16 z-50 bg-white shadow">
+        <div class="full h-full mx-auto px-10">
+            <div class="relative flex justify-center md:justify-between items-center h-full w-full">
+                <div class="gap-1 font-bold text-sm">
+                    <a href="/" class="flex items-center gap-1 transition-colors duration-300 ease-in-out text-xl">
+                        <h2 class="text-lg flex">AR<span class="text-violet-700">NIME</span></h2>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="pt-14">
+        <section class="px-5">
+            <div class="flex flex-col gap-4 min-h-screen overflow-y-hidden overflow-x-auto py-5" id="container">
+            </div>
+        </section>
+        <section class="text-center px-5 pb-7 animate">
+            <p class="text-xs">
+                <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="underline">CC BY-NC-SA 4.0</a>
+                2024-PRESENT &copy; Ammar |
+                <a href="#" class="underline">Privacy Police</a>
+                |
+                <a href="#" class="underline">Disclaimer</a>
+                |
+                <a href="https://status.ammaricano.my.id" class="underline">Status</a>
+            </p>
+            <p class="text-xs">
+                Produdly created by
+                <a href="https://ammaricano.my.id" class="underline">ammaricano</a>
+                and Powered by
+                <a href="tailwindcss.com" class="underline">TailwindCSS</a>
+            </p>
+        </section>
+    </main>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/ldrs/dist/auto/ring.js"></script>
+    <script>
+        const apiURL = "https://asepharyana.cloud/api/anime";
+        const urlParams = new URLSearchParams(window.location.search);
+        const slug = urlParams.get('anime');
+        fetch(`${apiURL}/detail/${slug}`, {
+            headers: { accept: "application/json" },
+        })
+            .then((res) => {
+                return res.json();
+            })
+            .then((data) => {
+                console.log(data);
+                let title = data.data.title;
+                let alternative_title = data.data.alternative_title;
+                let poster = data.data.poster;
+                let type = data.data.type;
+                let release_date = data.data.release_date;
+                let status = data.data.status;
+                let studio = data.data.studio;
+                let synopsis = data.data.synopsis;
+                let genres = data.data.genres.map(genre => genre.name).join(", ");
+                let producers = data.data.producers.map(producer => producer).join(", ");
+                let container = document.getElementById("container");
+                container.innerHTML = `
+                <div class="flex flex-col sm:flex-row justify-center sm:justify-start gap-4 p-4">
+                    <div class="flex justify-center">
+    <!-- Gambar Poster -->
+    <img src="${poster}" alt="${poster}" class="h-56 w-36 object-cover rounded-lg">
+</div>
+    <!-- Informasi Lebih Lanjut -->
+    <div class="more-info flex flex-col justify-between">
+        <h2 class="text-lg font-semibold">${title} (${alternative_title})</h2>
+        <p><span class="font-semibold">Type:</span> ${type}</p>
+        <p><span class="font-semibold">Release:</span> ${release_date}</p>
+        <p><span class="font-semibold">Status:</span> ${status}</p>
+        <p><span class="font-semibold">Studio:</span> ${studio}</p>
+        <p><span class="font-semibold">Genre's:</span> ${genres}</p>
+        <p><span class="font-semibold">Producer's:</span> ${producers}</p>
+    </div>
+</div>
+
+<!-- Sinopsis -->
+<div class="synopsis px-4">
+    <h2 class="text-lg font-semibold">Synopsis</h2>
+    <p>${synopsis}</p>
+</div>
+
+<!-- Batch -->
+<div class="batch px-4">
+    <h2 class="text-lg font-semibold">Batch</h2>
+    <div class="flex flex-col gap-4" id="batch">
+    </div>
+</div>
+
+    <!-- Episode -->
+    <div class="episode px-4">
+        <h2 class="text-lg font-semibold">Episode</h2>
+        <div class="flex flex-col gap-4" id="episode">
+        </div>
+    </div>
+
+    <!-- Recomendation -->
+    <div class="episode px-4">
+        <h2 class="text-lg font-semibold">Recomendation</h2>
+        <div class="flex gap-4 overflow-y-hidden overflow-x-auto py-5" id="recomendation">
+        </div>
+    </div>
+`;
+
+                let batch = '';
+                if (data.data.batch.length) {
+                    for (var i = 0; i < data.data.batch.length; i++) {
+                    let episode = data.data.batch[i].episode;
+                    let slug = data.data.batch[i].slug;
+                    batch += `
+            <a href="../episode/index.html?episode=${slug}" class="w-full py-2 px-3 bg-gray-200 hover:bg-violet-700 hover:text-white rounded-lg transition-all duration-300">
+                ${episode}
+            </a>
+            `;
+                }
+                document.getElementById("batch").innerHTML = batch;
+                } else {
+                    batch += `
+            <p>
+                Belum ada batch untuk anime ini.
+            </p>`
+            document.getElementById("batch").innerHTML = batch;
+                }
+
+                let episode = '';
+                for (var j = 0; j < data.data.episode_lists.length; j++) {
+                    let episodeTitle = data.data.episode_lists[j].episode;
+                    let slug = data.data.episode_lists[j].slug;
+                    episode += `
+            <a href="../episode/index.html?episode=${slug}" class="w-full py-2 px-3 bg-gray-200 hover:bg-violet-700 hover:text-white rounded-lg transition-all duration-300">
+                ${episodeTitle}
+            </a>
+            `;
+                }
+                document.getElementById("episode").innerHTML = episode;
+
+                let recomendation = '';  // Pindahkan deklarasi `container` di luar loop
+        for (var i = 0; i < data.data.recommendations.length; i++) {
+            let title = data.data.recommendations[i].title;
+            let slug = data.data.recommendations[i].slug;
+            let poster = data.data.recommendations[i].poster;
+
+            recomendation += `
+            <a href="detailanime/index.html?anime=${slug}" class="w-full hover:scale-105 transition-all duration-300">
+                <div class="relative w-28 overflow-hidden rounded">
+                    <img src="${poster}" alt="thumbnail" class="h-40 w-full object-cover"/>
+                </div>
+                <p class="line-clamp-2 text-sm">${title}</p>
+            </a>
+            `;
+        }
+        document.getElementById('recomendation').innerHTML = recomendation;
+            });
+    </script>
+</body>
+
+</html>
