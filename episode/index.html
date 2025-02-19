@@ -49,6 +49,7 @@
                 |
                 <a href="https://status.ammaricano.my.id" class="underline">Status</a>
             </p>
+
             <p class="text-xs">
                 Produdly created by
                 <a href="https://ammaricano.my.id" class="underline">ammaricano</a>
@@ -77,11 +78,11 @@
                 let stream_url = data.data.stream_url;
                 let container = document.getElementById("container");
                 container.innerHTML = `
-                <div class="flex flex-col sm:flex-row justify-center gap-4 p-4">
+                <div class="flex flex-col justify-center gap-4 p-4">
                     <h2 class="text-lg font-semibold">${episode}</h2>
                     <div class="w-full h-0 pb-[56.25%] relative">
     <!-- Gambar Poster -->
-    <iframe src="${stream_url}" frameborder="0" class="absolute top-0 left-0 w-full h-full"></iframe>
+    <iframe src="${stream_url}" frameborder="0" allowfullscreen class="absolute top-0 left-0 w-full h-full"></iframe>
 </div>
     <!-- Informasi Lebih Lanjut -->
     <div class="flex flex-col gap-4">
