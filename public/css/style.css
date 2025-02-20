@@ -623,9 +623,6 @@
   .h-full {
     height: 100%;
   }
-  .h-screen {
-    height: 100vh;
-  }
   .min-h-screen {
     min-height: 100vh;
   }
@@ -652,9 +649,6 @@
   }
   .transform {
     transform: var(--tw-rotate-x) var(--tw-rotate-y) var(--tw-rotate-z) var(--tw-skew-x) var(--tw-skew-y);
-  }
-  .cursor-pointer {
-    cursor: pointer;
   }
   .resize {
     resize: both;
@@ -718,23 +712,11 @@
   .bg-gray-200 {
     background-color: var(--color-gray-200);
   }
-  .bg-transparent {
-    background-color: transparent;
-  }
   .bg-violet-700 {
     background-color: var(--color-violet-700);
   }
   .bg-white {
     background-color: var(--color-white);
-  }
-  .fill-violet-700 {
-    fill: var(--color-violet-700);
-  }
-  .stroke-current {
-    stroke: currentColor;
-  }
-  .stroke-violet-700 {
-    stroke: var(--color-violet-700);
   }
   .object-cover {
     object-fit: cover;
@@ -769,6 +751,9 @@
   .pt-7 {
     padding-top: calc(var(--spacing) * 7);
   }
+  .pt-10 {
+    padding-top: calc(var(--spacing) * 10);
+  }
   .pt-14 {
     padding-top: calc(var(--spacing) * 14);
   }
@@ -781,17 +766,8 @@
   .pb-7 {
     padding-bottom: calc(var(--spacing) * 7);
   }
-  .pb-14 {
-    padding-bottom: calc(var(--spacing) * 14);
-  }
-  .pb-20 {
-    padding-bottom: calc(var(--spacing) * 20);
-  }
   .pb-24 {
     padding-bottom: calc(var(--spacing) * 24);
-  }
-  .pb-28 {
-    padding-bottom: calc(var(--spacing) * 28);
   }
   .pb-\[56\.25\%\] {
     padding-bottom: 56.25%;
@@ -826,9 +802,6 @@
   .font-semibold {
     --tw-font-weight: var(--font-weight-semibold);
     font-weight: var(--font-weight-semibold);
-  }
-  .text-current {
-    color: currentColor;
   }
   .text-violet-700 {
     color: var(--color-violet-700);
@@ -922,11 +895,6 @@
       flex-direction: row;
     }
   }
-  .sm\:justify-between {
-    @media (width >= 40rem) {
-      justify-content: space-between;
-    }
-  }
   .sm\:justify-start {
     @media (width >= 40rem) {
       justify-content: flex-start;
@@ -950,16 +918,6 @@
   .lg\:top-0 {
     @media (width >= 64rem) {
       top: calc(var(--spacing) * 0);
-    }
-  }
-  .dark\:block {
-    @media (prefers-color-scheme: dark) {
-      display: block;
-    }
-  }
-  .dark\:hidden {
-    @media (prefers-color-scheme: dark) {
-      display: none;
     }
   }
 }

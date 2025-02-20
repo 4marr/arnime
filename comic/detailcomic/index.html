@@ -56,7 +56,7 @@
             </div>
         </div>
     </header>
-    <main class="pt-14">
+    <main class="pt-10">
         <section class="px-5">
             <div class="flex flex-col gap-4 min-h-screen overflow-y-hidden overflow-x-auto py-5" id="container">
             </div>
@@ -131,28 +131,28 @@
     <p>${description}</p>
 </div>
 
-    <!-- Episode -->
-    <div class="episode px-4">
+    <!-- Chapter -->
+    <div class="chapter-container px-4">
         <h2 class="text-lg font-semibold">Episode</h2>
-        <div class="flex flex-col gap-4" id="episode">
+        <div class="flex flex-col gap-4" id="chapter-container">
         </div>
     </div>
 `;
 
 
-                let episode = '';
+                let chapterContainer = '';
                 for (var j = 0; j < data.chapters.length; j++) {
                     let chapter = data.chapters[j].chapter;
                     let date = data.chapters[j].date;
                     let chapter_id = data.chapters[j].chapter_id;
-                    episode += `
+                    chapterContainer += `
             <a href="../chapter/index.html?chapter=${chapter_id}" class="w-full flex justify-between py-2 px-3 bg-gray-200 hover:bg-violet-700 hover:text-white rounded-lg transition-all duration-300">
                 <p>${chapter}</p>
                 <p>${date}</p>
             </a>
             `;
                 }
-                document.getElementById("episode").innerHTML = episode;
+                document.getElementById("chapter-container").innerHTML = chapterContainer;
             });
     </script>
 </body>

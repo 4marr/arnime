@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("search").addEventListener("keypress", (event) => {
         let value = document.getElementById("search").value;
         if (event.key === "Enter") {
-            window.location.href = `search/index.html?anime=${value}`;
+            window.location.href = `search/index.html?comic=${value}`;
         }
     });
 });

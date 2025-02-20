@@ -16,7 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="../public/css/style.css">
+    <link rel="stylesheet" href="../../public/css/style.css">
     <link rel="stylesheet" href="../public/css/custom.css">
 
     <!-- JS -->
@@ -59,10 +59,10 @@
     </main>
     <script type="module" src="https://cdn.jsdelivr.net/npm/ldrs/dist/auto/ring.js"></script>
     <script>
-        const apiURL = "https://asepharyana.cloud/api/anime";
+        const apiURL = "https://asepharyana.cloud/api/komik";
         const urlParams = new URLSearchParams(window.location.search);
-        const slug = urlParams.get('anime');
-        fetch(`${apiURL}/search?q=${slug}`, {
+        const slug = urlParams.get('comic');
+        fetch(`${apiURL}/search?query=${slug}`, {
             headers: { accept: "application/json" },
         })
             .then((res) => {
@@ -74,24 +74,18 @@
                     let container = "";
                     for (var i = 0; i < data.data.length; i++) {
                         let title = data.data[i].title;
-                        let slug = data.data[i].slug;
-                        let poster = data.data[i].poster;
-                        let episode = data.data[i].episode;
-                        let status = data.data[i].status;
-                        let rating = data.data[i].rating;
-                        let genres = data.data[i].genres.map(genre => genre).join(", ");
+                        let image = data.data[i].image;
+                        let type = data.data[i].type;
+                        let komik_id = data.data[i].komik_id;
 
                         container += `
-            <a href="../detailanime/index.html?anime=${slug}" class="w-full rounded flex gap-4 hover:bg-gray-100 transition-all duration-300">
-                <div class="relative min-w-28 overflow-hidden rounded">
-                    <p class="absolute bg-violet-700 text-white text-xs p-1 rounded-br-lg">${status}</p>
-                    <p class="absolute bg-violet-700 text-white text-xs p-1 rounded-tl-lg bottom-0 right-0">⭐ ${rating}</p>
-                    <img src="${poster}" alt="thumbnail" class="h-40 w-full object-cover"/>
+            <a href="../detailcomic/index.html?comic=${komik_id}" class="w-full rounded flex gap-4 hover:bg-gray-100 transition-all duration-300">
+                <div class="relative w-28 overflow-hidden rounded">
+                    <p class="absolute bg-violet-700 text-white text-xs p-1 rounded-br-lg">${type}</p>
+                    <img src="${image}" alt="${image}" class="h-40 w-full object-cover"/>
                 </div>
                 <div>
                 <p class="line-clamp-3 text-lg font-semibold">${title}</p>
-                <p class="line-clamp-2 text-sm">${episode}</p>
-                <p class="line-clamp-2 text-sm">${genres}</p>
                 </div>
             </a>
             `;
