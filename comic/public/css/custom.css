@@ -1,0 +1,12 @@
+* {
+    box-sizing: border-box;
+}
+
+#manga, #manhwa, #manhua {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+#manga::-webkit-scrollbar, #manhwa::-webkit-scrollbar, #manhua::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+}

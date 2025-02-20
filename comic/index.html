@@ -16,7 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="public/css/style.css">
+    <link rel="stylesheet" href="../public/css/style.css">
     <link rel="stylesheet" href="public/css/custom.css">
 
     <!-- JS -->
@@ -40,7 +40,7 @@
                             class="hidden h-8 rounded-full md:flex items-center justify-center transition-colors duration-300 ease-in-out">Home
                         </a>
                         <a href="/"
-                            class="flex flex-col rounded-full md:hidden items-center justify-center transition-colors duration-300 ease-in-out text-violet-700">
+                            class="flex flex-col rounded-full md:hidden items-center justify-center transition-colors duration-300 ease-in-out">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" d="M20.409 9.353a2.998 2.998 0 0 1 0 5.294L7.597 21.614C5.534 22.737 3 21.277 3 18.968V5.033c0-2.31 2.534-3.769 4.597-2.648z"/></svg>
                             <p class="text-xs">Anime</p>
                         </a>
@@ -48,7 +48,7 @@
                             class="hidden h-8 rounded-full text-l-on-base/50 dark:text-d-on-base/50 hover:text-current md:flex items-center justify-center transition-colors duration-300 ease-in-out">Comic
                         </a>
                         <a href="comic"
-                            class="flex flex-col rounded-full md:hidden items-center justify-center transition-colors duration-300 ease-in-out">
+                            class="flex flex-col rounded-full md:hidden items-center justify-center transition-colors duration-300 ease-in-out text-violet-700">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2 6s1.5-2 5-2s5 2 5 2v14s-1.5-1-5-1s-5 1-5 1zm10 0s1.5-2 5-2s5 2 5 2v14s-1.5-1-5-1s-5 1-5 1z"/></svg>
                             <p class="text-xs">Komik</p>
                         </a>
@@ -61,17 +61,22 @@
         <section class="px-5">
             <h2 class="text-lg font-semibold">Search</h2>
             <div class="flex gap-4 pb-5">
-                <input type="text" name="search" id="search" class="w-full py-2 px-3 bg-gray-100 rounded-lg transition-all duration-300 border-0 outline-0" placeholder="Search anime..">
+                <input type="text" name="search" id="search" class="w-full py-2 px-3 bg-gray-100 rounded-lg transition-all duration-300 border-0 outline-0" placeholder="Search komik..">
             </div>
         </section>
         <section class="px-5">
-            <h2 class="text-lg font-semibold">Complete</h2>
-            <div class="flex gap-4 overflow-y-hidden overflow-x-auto py-5" id="complete">
+            <h2 class="text-lg font-semibold">Manga</h2>
+            <div class="flex gap-4 overflow-y-hidden overflow-x-auto py-5" id="manga">
             </div>
         </section>
         <section class="px-5">
-            <h2 class="text-lg font-semibold">Ongoing</h2>
-            <div class="flex gap-4 overflow-y-hidden overflow-x-auto py-5" id="ongoing">
+            <h2 class="text-lg font-semibold">Manhwa</h2>
+            <div class="flex gap-4 overflow-y-hidden overflow-x-auto py-5" id="manhwa">
+            </div>
+        </section>
+        <section class="px-5">
+            <h2 class="text-lg font-semibold">Manhua</h2>
+            <div class="flex gap-4 overflow-y-hidden overflow-x-auto py-5" id="manhua">
             </div>
         </section>
         <section class="text-center px-5 pt-7 pb-24 animate">

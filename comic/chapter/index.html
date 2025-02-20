@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google" content="notranslate">
+    <meta name="description"
+        content="Ammar Abdul Malik, a student in Informatics Engineering, technology is my passion and dreaming about a better world with it and making it happen is a dream come true. I am generally into frontend web developer things but over the past few month I have begun learning about backend web developer using Laravel if you are interested, you can visit my projects here. Ouside coding, I often spend my time listening to music, watching animes and reading manga if you have any recommendations please don't hesitate to suggest them. I live in Bogor, West Java so in case you're around don't hesitate to contact me, perhaps we'll grab some coffee or do some collaboration.">
+    <meta name="keywords" content="Portfolio, Blog, Projects">
+    <meta name="author" content="Ammaricano">
+    <title>Ammar as ammaricano</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../../public/css/style.css">
+    <link rel="stylesheet" href="../public/css/custom.css">
+
+    <!-- JS -->
+</head>
+
+<body class="">
+    <header id="header" class="fixed bottom-0 lg:top-0 w-full h-16 z-50 bg-white">
+        <div class="full h-full mx-auto px-10">
+            <div class="relative flex justify-between items-center h-full w-full">
+                <div class="gap-1 font-bold text-sm">
+                    <a href="/"
+                        class="flex items-center gap-1 text-l-on-base dark:text-d-on-base transition-colors duration-300 ease-in-out text-xl">
+                        <h2 class="text-lg flex">AR<span class="text-violet-700">NIME</span></h2>
+                    </a>
+                </div>
+                <div class="">
+                    <nav
+                        class="flex items-center justify-center text-sm gap-4 font-semibold text-l-on-base dark:text-d-on-base">
+                        <a href="/"
+                            class="hidden h-8 rounded-full md:flex items-center justify-center transition-colors duration-300 ease-in-out">Home
+                        </a>
+                        <a href="/"
+                            class="flex flex-col rounded-full md:hidden items-center justify-center transition-colors duration-300 ease-in-out">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" d="M20.409 9.353a2.998 2.998 0 0 1 0 5.294L7.597 21.614C5.534 22.737 3 21.277 3 18.968V5.033c0-2.31 2.534-3.769 4.597-2.648z"/></svg>
+                            <p class="text-xs">Anime</p>
+                        </a>
+                        <a href="comic"
+                            class="hidden h-8 rounded-full text-l-on-base/50 dark:text-d-on-base/50 hover:text-current md:flex items-center justify-center transition-colors duration-300 ease-in-out">Comic
+                        </a>
+                        <a href="comic"
+                            class="flex flex-col rounded-full md:hidden items-center justify-center transition-colors duration-300 ease-in-out text-violet-700">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2 6s1.5-2 5-2s5 2 5 2v14s-1.5-1-5-1s-5 1-5 1zm10 0s1.5-2 5-2s5 2 5 2v14s-1.5-1-5-1s-5 1-5 1z"/></svg>
+                            <p class="text-xs">Komik</p>
+                        </a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="pt-14">
+        <section>
+            <div class="flex flex-col gap-4 min-h-screen py-5" id="container">
+            </div>
+        </section>
+        <section class="text-center px-5 pt-7 pb-24 animate">
+            <p class="text-xs">
+                <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="underline">CC BY-NC-SA 4.0</a>
+                2024-PRESENT &copy; Ammar |
+                <a href="#" class="underline">Privacy Police</a>
+                |
+                <a href="#" class="underline">Disclaimer</a>
+                |
+                <a href="https://status.ammaricano.my.id" class="underline">Status</a>
+            </p>
+
+            <p class="text-xs">
+                Produdly created by
+                <a href="https://ammaricano.my.id" class="underline">ammaricano</a>
+                and Powered by
+                <a href="tailwindcss.com" class="underline">TailwindCSS</a>
+            </p>
+        </section>
+    </main>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/ldrs/dist/auto/ring.js"></script>
+    <script>
+        const apiURL = "https://asepharyana.cloud/api/komik";
+        const urlParams = new URLSearchParams(window.location.search);
+        const slug = urlParams.get('chapter');
+        fetch(`${apiURL}/chapter?chapter_url=${slug}`, {
+            headers: { accept: "application/json" },
+        })
+            .then((res) => {
+                return res.json();
+            })
+            .then((data) => {
+                console.log(data);
+                let title = data.title;
+                let next_chapter_id = data.next_chapter_id;
+                let prev_chapter_id = data.prev_chapter_id;
+                let container = document.getElementById("container");
+                container.innerHTML = `
+                <div class="flex flex-col justify-center gap-4 p-4">
+                    <h2 class="text-lg font-semibold">${title}</h2>
+                    <div class="flex flex-col gap-4">
+                        <div id="pagination" class="flex justify-between">
+                            <button id="previous" class="py-2 px-4 bg-gray-200 hover:bg-violet-700 hover:text-white rounded-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed">Previous</button>
+                            <button id="next" class="py-2 px-4 bg-gray-200 hover:bg-violet-700 hover:text-white rounded-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed">Next</button>
+                        </div>
+                        <div class="w-full relative" id="image-chapter">
+                        </div>
+                        <div class="flex flex-col gap-4">
+                        <div id="pagination" class="flex justify-between">
+                            <button id="previous" class="py-2 px-4 bg-gray-200 hover:bg-violet-700 hover:text-white rounded-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed">Previous</button>
+                            <button id="next" class="py-2 px-4 bg-gray-200 hover:bg-violet-700 hover:text-white rounded-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed">Next</button>
+                        </div>
+                    </div>
+                </div>`
+
+                // Ambil elemen tombol
+                const previousButton = document.getElementById('previous');
+                const nextButton = document.getElementById('next');
+
+                // Menampilkan tombol Previous jika ada episode sebelumnya
+                if (next_chapter_id !== null) {
+                    previousButton.disabled = false; // Mengaktifkan tombol Previous
+                    previousButton.onclick = function () {
+                        window.location.href = `index.html?episode=${next_chapter_id}`; // Arahkan ke URL previous episode
+                    };
+                } else {
+                    previousButton.disabled = true; // Menonaktifkan tombol Previous
+                }
+
+                // Menampilkan tombol Next jika ada episode berikutnya
+                if (prev_chapter_id !== null) {
+                    nextButton.disabled = false; // Mengaktifkan tombol Next
+                    nextButton.onclick = function () {
+                        window.location.href = `index.html?episode=${prev_chapter_id}`; // Arahkan ke URL next episode
+                    };
+                } else {
+                    nextButton.disabled = true; // Menonaktifkan tombol Next
+                }
+
+                let imageChapter = '';
+                for (var j = 0; j < data.images.length; j++) {
+                    let images = data.images[j];
+                    imageChapter += `
+                    <img src="${images}" alt="${images}">
+            `;
+                }
+                document.getElementById("image-chapter").innerHTML = imageChapter;
+            });
+    </script>
+</body>
+
+</html>
