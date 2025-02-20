@@ -23,13 +23,35 @@
 </head>
 
 <body class="">
-    <header id="header" class="fixed top-0 w-full h-16 z-50 bg-white shadow">
+    <header id="header" class="fixed bottom-0 lg:top-0 w-full h-16 z-50 bg-white">
         <div class="full h-full mx-auto px-10">
-            <div class="relative flex justify-center md:justify-between items-center h-full w-full">
+            <div class="relative flex justify-between items-center h-full w-full">
                 <div class="gap-1 font-bold text-sm">
-                    <a href="/" class="flex items-center gap-1 transition-colors duration-300 ease-in-out text-xl">
+                    <a href="/"
+                        class="flex items-center gap-1 text-l-on-base dark:text-d-on-base transition-colors duration-300 ease-in-out text-xl">
                         <h2 class="text-lg flex">AR<span class="text-violet-700">NIME</span></h2>
                     </a>
+                </div>
+                <div class="">
+                    <nav
+                        class="flex items-center justify-center text-sm gap-4 font-semibold text-l-on-base dark:text-d-on-base">
+                        <a href="https://ammaricano.my.id/arnime"
+                            class="hidden h-8 rounded-full md:flex items-center justify-center transition-colors duration-300 ease-in-out">Home
+                        </a>
+                        <a href="https://ammaricano.my.id/arnime"
+                            class="flex flex-col rounded-full md:hidden items-center justify-center transition-colors duration-300 ease-in-out text-violet-700">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" d="M20.409 9.353a2.998 2.998 0 0 1 0 5.294L7.597 21.614C5.534 22.737 3 21.277 3 18.968V5.033c0-2.31 2.534-3.769 4.597-2.648z"/></svg>
+                            <p class="text-xs">Anime</p>
+                        </a>
+                        <a href="https://ammaricano.my.id/arnime/comic"
+                            class="hidden rounded-full text-l-on-base/50 dark:text-d-on-base/50 hover:text-current md:flex items-center justify-center transition-colors duration-300 ease-in-out">Comic
+                        </a>
+                        <a href="https://ammaricano.my.id/arnime/comic"
+                            class="flex flex-col rounded-full md:hidden items-center justify-center transition-colors duration-300 ease-in-out">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2 6s1.5-2 5-2s5 2 5 2v14s-1.5-1-5-1s-5 1-5 1zm10 0s1.5-2 5-2s5 2 5 2v14s-1.5-1-5-1s-5 1-5 1z"/></svg>
+                            <p class="text-xs">Comic</p>
+                        </a>
+                    </nav>
                 </div>
             </div>
         </div>
