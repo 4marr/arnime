@@ -2,11 +2,10 @@
     box-sizing: border-box;
 }
 
-#complete, #ongoing, #recomendation {
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* Internet Explorer 10+ */
+#disqus-overlay {
+    display: none; /* Default disembunyikan */
 }
 
-#complete::-webkit-scrollbar, #ongoing::-webkit-scrollbar, #recomendation::-webkit-scrollbar {
-    display: none; /* Safari and Chrome */
+#disqus-overlay.active {
+    display: flex; /* Tampilkan overlay saat aktif */
 }

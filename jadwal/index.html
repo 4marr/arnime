@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google" content="notranslate">
+    <meta name="description"
+        content="Ammar Abdul Malik, a student in Informatics Engineering, technology is my passion and dreaming about a better world with it and making it happen is a dream come true. I am generally into frontend web developer things but over the past few month I have begun learning about backend web developer using Laravel if you are interested, you can visit my projects here. Ouside coding, I often spend my time listening to music, watching animes and reading manga if you have any recommendations please don't hesitate to suggest them. I live in Bogor, West Java so in case you're around don't hesitate to contact me, perhaps we'll grab some coffee or do some collaboration.">
+    <meta name="keywords" content="Portfolio, Blog, Projects">
+    <meta name="author" content="Ammaricano">
+    <title>Arnime</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../public/css/style.css">
+    <link rel="stylesheet" href="../public/css/custom.css">
+</head>
+
+<body>
+    <div id="loader"
+        class="absolute top-0 left-0 w-full h-full bg-white z-50 flex flex-col items-center justify-center">
+        <img src="public/img/nokotan.gif" alt="">
+        <p class="font-semibold">Loading...</p>
+    </div>
+    <header id="bottom-header" class="fixed bottom-0 w-full h-16 z-50 bg-white">
+        <div class="full h-full mx-auto px-5">
+            <div class="relative flex items-center h-full w-full">
+                <div class="">
+                    <nav
+                        class="flex items-center justify-center text-sm gap-4 font-semibold text-l-on-base dark:text-d-on-base">
+                        <a href="/arnime"
+                            class="flex gap-2 rounded-full items-center justify-center transition-colors duration-300 ease-in-out text-violet-700 bg-[#F0F0F5] py-2 px-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                                <path fill="none" stroke="currentColor" stroke-width="1.5"
+                                    d="M20.409 9.353a2.998 2.998 0 0 1 0 5.294L7.597 21.614C5.534 22.737 3 21.277 3 18.968V5.033c0-2.31 2.534-3.769 4.597-2.648z" />
+                            </svg>
+                            <p class="text-xs">Anime</p>
+                        </a>
+                        <a href="/arnime/comic"
+                            class="flex gap-2 rounded-full items-center justify-center transition-colors duration-300 ease-in-out">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="1.5"
+                                    d="M2 6s1.5-2 5-2s5 2 5 2v14s-1.5-1-5-1s-5 1-5 1zm10 0s1.5-2 5-2s5 2 5 2v14s-1.5-1-5-1s-5 1-5 1z" />
+                            </svg>
+                            <p class="text-xs hidden">Comic</p>
+                        </a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section class="px-5">
+            <h2 class="text-lg text-center flex gap-2 pt-5 justify-center font-bold"><svg
+                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <g fill="none">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-width="1.5"
+                        d="M14 22h-4c-3.771 0-5.657 0-6.828-1.172S2 17.771 2 14v-2c0-3.771 0-5.657 1.172-6.828S6.229 4 10 4h4c3.771 0 5.657 0 6.828 1.172S22 8.229 22 12v2c0 3.771 0 5.657-1.172 6.828c-.653.654-1.528.943-2.828 1.07M7 4V2.5M17 4V2.5M21.5 9H10.75M2 9h3.875" />
+                    <path fill="currentColor"
+                        d="M18 17a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0" />
+                </g>
+            </svg> Jadwal Anime</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 py-5" id="container">
+            </div>
+            <div id="container-loading">
+            </div>
+        </section>
+        <section class="text-center px-5 pt-7 pb-24 animate">
+            <p class="text-xs">
+                <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="underline">CC BY-NC-SA 4.0</a>
+                2024-PRESENT &copy; Ammar |
+                <a href="#" class="underline">Privacy Police</a>
+                |
+                <a href="#" class="underline">Disclaimer</a>
+                |
+                <a href="https://status.ammaricano.my.id" class="underline">Status</a>
+            </p>
+            <p class="text-xs">
+                Produdly created by
+                <a href="https://ammaricano.my.id" class="underline">ammaricano</a>
+                and Powered by
+                <a href="tailwindcss.com" class="underline">TailwindCSS</a>
+            </p>
+        </section>
+    </main>
+    <script>
+        fetch("https://wajik-anime-api.vercel.app/otakudesu/schedule")
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data);
+                let schedule = ''; // Declare the container outside the loop
+                for (var i = 0; i < data.data.days.length; i++) {
+                    let day = data.data.days[i].day;
+                    let daySchedule = ''; // Container for the day's anime list
+                    for (var j = 0; j < data.data.days[i].animeList.length; j++) {
+                        let anime = data.data.days[i].animeList[j];
+                        let title = anime.title;
+                        let slug = anime.animeId; // Use the animeId as the slug
+                        daySchedule += `
+                            <a href="detailanime/index.html?anime=${slug}" class="hover:text-violet-700 border-b border-gray-200 pb-2">${title}</a>
+                        `;
+                    }
+                    schedule += `
+                        <div class="bg-white rounded-lg border border-gray-200 p-4 flex flex-col gap-2">
+                            <div class="bg-violet-100 rounded-lg p-4 mb-4">
+                                <h2 class="text-center text-violet-700 font-semibold text-gray-800">${day}</h2>
+                            </div>
+                            ${daySchedule} <!-- Display the anime list for this day -->
+                        </div>
+                    `;
+                }
+                document.getElementById('container').innerHTML += schedule; // Add all the schedule cards to the container
+            })
+            .catch((error) => {
+                console.error("Error fetching schedule:", error);
+            });
+    </script>
+    <script>
+        let loader = document.getElementById("loader");
+        document.addEventListener("DOMContentLoaded", () => {
+            setTimeout(() => {
+                loader.style.display = "none";
+            }, 1000);
+        });
+    </script>
+</body>
+
+</html>

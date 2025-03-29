@@ -23,8 +23,13 @@
 </head>
 
 <body class="">
-    <header id="header" class="fixed bottom-0 lg:top-0 w-full h-16 z-50 bg-white">
-        <div class="full h-full mx-auto px-10">
+    <div id="loader"
+        class="absolute top-0 left-0 w-full h-full bg-white z-50 flex flex-col items-center justify-center">
+        <img src="../public/img/nokotan.gif" alt="">
+        <p class="font-semibold">Loading...</p>
+    </div>
+    <header id="header" class="fixed top-0 z-10 w-full h-16 bg-[#F0F0F5]">
+        <div class="full h-full mx-auto px-5">
             <div class="relative flex justify-between items-center h-full w-full">
                 <div class="gap-1 font-bold text-sm">
                     <a href="/"
@@ -32,31 +37,38 @@
                         <h2 class="text-lg flex">AR<span class="text-violet-700">NIME</span></h2>
                     </a>
                 </div>
+            </div>
+        </div>
+    </header>
+    <header id="bottom-header" class="fixed bottom-0 w-full h-16 z-10 bg-white">
+        <div class="full h-full mx-auto px-5">
+            <div class="relative flex items-center h-full w-full">
                 <div class="">
                     <nav
                         class="flex items-center justify-center text-sm gap-4 font-semibold text-l-on-base dark:text-d-on-base">
                         <a href="/arnime"
-                            class="hidden h-8 rounded-full md:flex items-center justify-center transition-colors duration-300 ease-in-out">Home
-                        </a>
-                        <a href="/arnime"
-                            class="flex flex-col rounded-full md:hidden items-center justify-center transition-colors duration-300 ease-in-out text-violet-700">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" d="M20.409 9.353a2.998 2.998 0 0 1 0 5.294L7.597 21.614C5.534 22.737 3 21.277 3 18.968V5.033c0-2.31 2.534-3.769 4.597-2.648z"/></svg>
+                            class="flex gap-2 rounded-full items-center justify-center transition-colors duration-300 ease-in-out text-violet-700 bg-[#F0F0F5] py-2 px-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                                <path fill="none" stroke="currentColor" stroke-width="1.5"
+                                    d="M20.409 9.353a2.998 2.998 0 0 1 0 5.294L7.597 21.614C5.534 22.737 3 21.277 3 18.968V5.033c0-2.31 2.534-3.769 4.597-2.648z" />
+                            </svg>
                             <p class="text-xs">Anime</p>
                         </a>
                         <a href="/arnime/comic"
-                            class="hidden h-8 rounded-full text-l-on-base/50 dark:text-d-on-base/50 hover:text-current md:flex items-center justify-center transition-colors duration-300 ease-in-out">Comic
-                        </a>
-                        <a href="/arnime/comic"
-                            class="flex flex-col rounded-full md:hidden items-center justify-center transition-colors duration-300 ease-in-out">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2 6s1.5-2 5-2s5 2 5 2v14s-1.5-1-5-1s-5 1-5 1zm10 0s1.5-2 5-2s5 2 5 2v14s-1.5-1-5-1s-5 1-5 1z"/></svg>
-                            <p class="text-xs">Comic</p>
+                            class="flex gap-2 rounded-full items-center justify-center transition-colors duration-300 ease-in-out">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="1.5"
+                                    d="M2 6s1.5-2 5-2s5 2 5 2v14s-1.5-1-5-1s-5 1-5 1zm10 0s1.5-2 5-2s5 2 5 2v14s-1.5-1-5-1s-5 1-5 1z" />
+                            </svg>
+                            <p class="text-xs hidden">Comic</p>
                         </a>
                     </nav>
                 </div>
             </div>
         </div>
     </header>
-    <main class="pt-10">
+    <main class="py-16">
         <section class="px-5">
             <div class="flex flex-col gap-4 min-h-screen overflow-hidden py-5" id="container">
             </div>
@@ -82,10 +94,18 @@
     </main>
     <script type="module" src="https://cdn.jsdelivr.net/npm/ldrs/dist/auto/ring.js"></script>
     <script>
-        const apiURL = "https://asepharyana.cloud/api/anime";
+        let loader = document.getElementById("loader");
+        document.addEventListener("DOMContentLoaded", () => {
+            setTimeout(() => {
+                loader.style.display = "none";
+            }, 1000);
+        });
+
+        const apiURL = "https://otakudesu.natee.me/api/anime";
         const urlParams = new URLSearchParams(window.location.search);
-        const slug = urlParams.get('episode');
-        fetch(`${apiURL}/full/${slug}`, {
+        const slug = urlParams.get('slug');
+        const episodes = urlParams.get('episodes');
+        fetch(`${apiURL}/${slug}/episodes/${episodes}`, {
             headers: { accept: "application/json" },
         })
             .then((res) => {
@@ -100,12 +120,15 @@
                 let stream_url = data.data.stream_url;
                 let container = document.getElementById("container");
                 container.innerHTML = `
-                <div class="flex flex-col justify-center gap-4 p-4">
+                <div class="flex flex-col justify-center gap-4">
                     <h2 class="text-lg font-semibold">${episode}</h2>
                     <div class="w-full h-0 pb-[56.25%] relative">
     <!-- Gambar Poster -->
     <iframe src="${stream_url}" frameborder="0" allowfullscreen class="absolute top-0 left-0 w-full h-full"></iframe>
 </div>
+
+<select name="resolution" id="resolution" class="outline-0">
+                </select>
     <!-- Informasi Lebih Lanjut -->
     <div class="flex flex-col gap-4">
         <div id="pagination" class="flex justify-between">
@@ -124,10 +147,11 @@
                 const nextButton = document.getElementById('next');
 
                 // Menampilkan tombol Previous jika ada episode sebelumnya
+                let slug = data.data.anime.slug.replace(/\//g, "");
                 if (has_previous_episode) {
                     previousButton.disabled = false; // Mengaktifkan tombol Previous
                     previousButton.onclick = function () {
-                        window.location.href = `index.html?episode=${data.data.previous_episode.slug.replace(/\/$/, "")}`; // Arahkan ke URL previous episode
+                        window.location.href = `index.html?slug=${slug}&episodes=${parseInt(episodes - 1)}`; // Arahkan ke URL Previous episode
                     };
                 } else {
                     previousButton.disabled = true; // Menonaktifkan tombol Previous
@@ -137,66 +161,74 @@
                 if (has_next_episode) {
                     nextButton.disabled = false; // Mengaktifkan tombol Next
                     nextButton.onclick = function () {
-                        window.location.href = `index.html?episode=${data.data.next_episode.slug.replace(/\/$/, "")}`; // Arahkan ke URL next episode
+                        window.location.href = `index.html?slug=${slug}&episodes=${parseFloat(episodes) + 1}`; // Arahkan ke URL next episode
                     };
                 } else {
                     nextButton.disabled = true; // Menonaktifkan tombol Next
                 }
 
-                // Ambil elemen tempat kita akan menampilkan server
+                /// Ambil elemen tempat kita akan menampilkan server
                 const downloadContainer = document.getElementById('download');
+                const resolutionSelect = document.getElementById('resolution'); // Ambil elemen <select> untuk resolusi
 
                 // Data download_urls
                 let downloadUrls = data.data.download_urls;
-
+                const defaultOption = document.createElement("option");
+                defaultOption.value = stream_url;
+                defaultOption.textContent = "Default Stream";
+                resolutionSelect.appendChild(defaultOption);
                 // Loop melalui setiap resolusi (360, 480, 720, dll.)
-                Object.keys(downloadUrls).forEach(resolution => {
-                    // Buat elemen untuk setiap resolusi
-                    const resolutionElement = document.createElement('div');
-                    resolutionElement.classList.add('mb-6');  // Menambahkan margin bawah untuk pemisah antar resolusi
+                Object.keys(downloadUrls).forEach(format => {
+                    downloadUrls[format].forEach(resolution => {
+                        // Create the div for each resolution
+                        const resolutionElement = document.createElement('div');
+                        resolutionElement.classList.add('mb-6'); // Margin bottom for separation
 
-                    // Judul Resolusi
-                    const resolutionTitle = document.createElement('h3');
-                    resolutionTitle.classList.add('text-base', 'font-semibold', 'mb-4'); // Tambahkan gaya teks
-                    resolutionTitle.textContent = `Resolution: ${resolution}`;
+                        // Resolution title
+                        const resolutionTitle = document.createElement('h3');
+                        resolutionTitle.classList.add('text-base', 'font-semibold', 'mb-4');
+                        resolutionTitle.textContent = `Resolution: ${resolution.resolution}`;
 
-                    // Tambahkan judul resolusi ke dalam div resolusi
-                    resolutionElement.appendChild(resolutionTitle);
+                        // Append the title to the resolution element
+                        resolutionElement.appendChild(resolutionTitle);
 
-                    // Buat div pembungkus untuk setiap server
-                    const serverWrapper = document.createElement('div');
-                    serverWrapper.classList.add('mb-2', 'flex', 'gap-4', 'flex-wrap'); // Menambahkan margin dan menyusun secara horizontal
-                    // Loop melalui setiap server di resolusi tersebut
-                    downloadUrls[resolution].forEach((entry, index) => {
+                        // Create a wrapper for servers
+                        const serverWrapper = document.createElement('div');
+                        serverWrapper.classList.add('mb-2', 'flex', 'gap-4', 'flex-wrap');
 
-                        // Buat elemen untuk setiap server
-                        const serverElement = document.createElement('a');
-                        serverElement.href = `${entry.url}`;
-                        serverElement.classList.add(
-                            "py-2",
-                            "px-4",
-                            "bg-gray-200",
-                            "hover:bg-violet-700",
-                            "hover:text-white",
-                            "rounded-lg",
-                            "transition-all",
-                            "duration-300",
-                            "w-auto", // Mengatur lebar otomatis agar tidak memenuhi lebar layar
-                            "max-w-xs", // Membatasi lebar maksimum
-                            "text-center", // Memusatkan teks dalam link
-                            "text-sm"
-                        );
-                        serverElement.textContent = `${entry.server}`;
+                        // Loop through each server for the resolution
+                        resolution.urls.forEach(entry => {
+                            const serverElement = document.createElement('a');
+                            serverElement.href = entry.url;
+                            serverElement.classList.add(
+                                "py-2", "px-4", "bg-gray-200", "hover:bg-violet-700", "hover:text-white", "rounded-lg", "transition-all", "duration-300", "w-auto", "max-w-xs", "text-center", "text-sm"
+                            );
+                            serverElement.textContent = `${entry.provider}`;
 
-                        // Tambahkan elemen server ke dalam div pembungkus
-                        serverWrapper.appendChild(serverElement);
+                            // Jika provider adalah acefile, tambahkan ke <select> sebagai opsi
+                            if (entry.provider.toLowerCase() == 'acefile ') {
+                                console.log(entry.provider.toLowerCase());
 
-                        // Tambahkan div pembungkus ke dalam resolusi
+                                const option = document.createElement('option');
+                                option.value = entry.url; // URL sebagai value
+                                option.textContent = `${resolution.resolution} - ${entry.provider}`; // Teks opsi
+                                resolutionSelect.appendChild(option); // Tambahkan opsi ke <select>
+                            }
+
+                            // Append server element to the wrapper
+                            serverWrapper.appendChild(serverElement);
+                        });
+
+                        // Append server wrapper to resolution element
                         resolutionElement.appendChild(serverWrapper);
-                    });
 
-                    // Tambahkan bagian resolusi ke dalam container utama
-                    downloadContainer.appendChild(resolutionElement);
+                        // Append resolution element to the main container
+                        downloadContainer.appendChild(resolutionElement);
+                    });
+                });
+                const iframe = document.querySelector("iframe");
+                resolutionSelect.addEventListener("change", function (e) {
+                    iframe.src = e.target.value;
                 });
             });
     </script>

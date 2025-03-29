@@ -23,6 +23,11 @@
 </head>
 
 <body class="">
+    <div id="loader"
+        class="absolute top-0 left-0 w-full h-full bg-white z-50 flex flex-col items-center justify-center">
+        <img src="../public/img/nokotan.gif" alt="">
+        <p class="font-semibold">Loading...</p>
+    </div>
     <header id="header" class="fixed bottom-0 lg:top-0 w-full h-16 z-50 bg-white">
         <div class="full h-full mx-auto px-10">
             <div class="relative flex justify-between items-center h-full w-full">
@@ -81,6 +86,13 @@
     </main>
     <script type="module" src="https://cdn.jsdelivr.net/npm/ldrs/dist/auto/ring.js"></script>
     <script>
+        let loader = document.getElementById("loader");
+        document.addEventListener("DOMContentLoaded", () => {
+            setTimeout(() => {
+                loader.style.display = "none";
+            }, 1000);
+        });
+
         const apiURL = "https://asepharyana.cloud/api/anime";
         const urlParams = new URLSearchParams(window.location.search);
         const slug = urlParams.get('anime');
