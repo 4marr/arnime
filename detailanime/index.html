@@ -24,7 +24,7 @@
 
 <body class="">
     <div id="loader"
-        class="absolute top-0 left-0 w-full h-full bg-white z-50 flex flex-col items-center justify-center">
+        class="fixed top-0 left-0 w-full h-full bg-white z-50 flex flex-col items-center justify-center">
         <img src="../public/img/nokotan.gif" alt="">
         <p class="font-semibold">Loading...</p>
     </div>
@@ -126,7 +126,7 @@
                 let synopsis = data.data.synopsis;
                 let container = document.getElementById("container");
                 container.innerHTML = `
-                <div class="flex flex-col sm:flex-row justify-center sm:justify-start gap-4 p-4">
+                <div class="flex flex-col sm:flex-row justify-center sm:justify-start gap-4">
                     <div class="flex justify-center">
     <!-- Gambar Poster -->
     <img src="${poster}" alt="${poster}" class="h-56 w-36 object-cover rounded-lg">
@@ -147,19 +147,19 @@
 </div>
 
 <!-- Sinopsis -->
-<div class="synopsis px-4">
+<div class="synopsis">
     <p>${synopsis}</p>
 </div>
 
 <!-- Batch -->
-<div class="batch px-4">
+<div class="batch">
     <h2 class="text-lg font-semibold">Batch</h2>
     <div class="flex flex-col gap-4" id="batch">
     </div>
 </div>
 
     <!-- Episode -->
-    <div class="episode px-4">
+    <div class="episode">
         <h2 class="text-lg font-semibold">Episode</h2>
         <div class="flex flex-col gap-4" id="episode">
         </div>
@@ -213,7 +213,7 @@
             let poster = data.data.recommendations[i].poster;
 
             recomendation += `
-            <a href="detailanime/index.html?anime=${slug}" class="w-full hover:scale-105 transition-all duration-300">
+            <a href="index.html?anime=${slug}" class="w-full hover:scale-105 transition-all duration-300">
                 <div class="relative w-28 overflow-hidden rounded">
                     <img src="${poster}" alt="thumbnail" class="h-40 w-full object-cover"/>
                 </div>

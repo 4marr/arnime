@@ -76,7 +76,9 @@ function loadAnimeByGenre(genre, page) {
 }
 
 window.addEventListener("scroll", () => {
-    const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+    const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
+    const clientHeight = document.documentElement.clientHeight || document.body.clientHeight;
 
     // Jika pengguna mencapai bagian bawah halaman
     if (scrollTop + clientHeight >= scrollHeight - 10 && !isLoading && currentPage < 4) {
@@ -101,12 +103,12 @@ document.addEventListener("DOMContentLoaded", () => {
     loadAnimeByGenre(currentGenre, currentPage); // Muat data halaman pertama
 
     // Event listener untuk pencarian
-    document.getElementById("search").addEventListener("keypress", (event) => {
-        let value = document.getElementById("search").value;
-        if (event.key === "Enter") {
-            window.location.href = `search/index.html?anime=${value}`;
-        }
-    });
+});
+document.getElementById("search-input").addEventListener("keypress", (event) => {
+    let value = document.getElementById("search-input").value;
+    if (event.key === "Enter") {
+        window.location.href = `search/index.html?anime=${value}`;
+    }
 });
 
 document.getElementById("genre").addEventListener("change", (event) => {

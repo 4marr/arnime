@@ -22,7 +22,7 @@
 
 <body class="bg-[#F0F0F5]">
     <div id="loader"
-        class="absolute top-0 left-0 w-full h-full bg-white z-50 flex flex-col items-center justify-center">
+        class="fixed top-0 left-0 w-full h-full bg-white z-50 flex flex-col items-center justify-center">
         <img src="public/img/nokotan.gif" alt="">
         <p class="font-semibold">Loading...</p>
     </div>
@@ -170,7 +170,7 @@
             // Periksa apakah Disqus sudah dimuat
             if (!disqusContainer.hasChildNodes()) {
                 var d = document, s = d.createElement('script');
-                s.src = 'https://YOUR_DISQUS_SHORTNAME.disqus.com/embed.js'; // Ganti YOUR_DISQUS_SHORTNAME dengan shortname Disqus Anda
+                s.src = 'https://ammaricano.disqus.com/embed.js'; // Ganti YOUR_DISQUS_SHORTNAME dengan shortname Disqus Anda
                 s.setAttribute('data-timestamp', +new Date());
                 (d.head || d.body).appendChild(s);
             }

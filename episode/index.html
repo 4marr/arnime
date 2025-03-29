@@ -24,7 +24,7 @@
 
 <body class="">
     <div id="loader"
-        class="absolute top-0 left-0 w-full h-full bg-white z-50 flex flex-col items-center justify-center">
+        class="fixed top-0 left-0 w-full h-full bg-white z-50 flex flex-col items-center justify-center">
         <img src="../public/img/nokotan.gif" alt="">
         <p class="font-semibold">Loading...</p>
     </div>
@@ -137,7 +137,7 @@
 </div>
 
         <div id="download">
-            <h2 class="text-lg font-bold">Download's</h2>
+            <h2 class="text-lg font-bold">Download</h2>
         </div>
     </div>
 </div>`
@@ -206,7 +206,7 @@
                             serverElement.textContent = `${entry.provider}`;
 
                             // Jika provider adalah acefile, tambahkan ke <select> sebagai opsi
-                            if (entry.provider.toLowerCase() == 'acefile ') {
+                            if (entry.provider.toLowerCase() == 'acefile ' || entry.provider.toLowerCase() == 'acefile') {
                                 console.log(entry.provider.toLowerCase());
 
                                 const option = document.createElement('option');
