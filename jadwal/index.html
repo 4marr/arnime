@@ -23,7 +23,7 @@
 <body>
     <div id="loader"
         class="absolute top-0 left-0 w-full h-full bg-white z-50 flex flex-col items-center justify-center">
-        <img src="public/img/nokotan.gif" alt="">
+        <img src="../public/img/nokotan.gif" alt="">
         <p class="font-semibold">Loading...</p>
     </div>
     <header id="bottom-header" class="fixed bottom-0 w-full h-16 z-50 bg-white">
@@ -102,7 +102,7 @@
                         let title = anime.title;
                         let slug = anime.animeId; // Use the animeId as the slug
                         daySchedule += `
-                            <a href="detailanime/index.html?anime=${slug}" class="hover:text-violet-700 border-b border-gray-200 pb-2">${title}</a>
+                            <a href="../detailanime/index.html?anime=${slug}" class="hover:text-violet-700 border-b border-gray-200 pb-2">${title}</a>
                         `;
                     }
                     schedule += `

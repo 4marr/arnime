@@ -650,6 +650,9 @@
   .min-h-screen {
     min-height: 100vh;
   }
+  .w-10 {
+    width: calc(var(--spacing) * 10);
+  }
   .w-11\/12 {
     width: calc(11/12 * 100%);
   }
