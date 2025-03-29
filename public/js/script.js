@@ -12,7 +12,11 @@ function loadAnimeByGenre(genre, page) {
 
     // Tampilkan indikator loading
     const containerLoading = document.getElementById("container-loading");
-    containerLoading.innerHTML = `<p id="loading" class="text-center text-sm">Loading...</p>`;
+    containerLoading.innerHTML = `<div id="loading"
+        class="flex flex-col items-center justify-center">
+        <img src="public/img/nokotan.gif" alt="" class="w-20 h-20 mb-2" />
+        <p class="font-semibold">Loading...</p>
+    </div>`;
 
     // Tentukan URL berdasarkan genre
     let url = "";
@@ -70,6 +74,7 @@ function loadAnimeByGenre(genre, page) {
             document.getElementById("loading").remove(); // Hapus indikator loading
         });
 }
+
 window.addEventListener("scroll", () => {
     const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
 
@@ -79,6 +84,7 @@ window.addEventListener("scroll", () => {
         loadAnimeByGenre(currentGenre, currentPage); // Muat data halaman berikutnya
     }
 });
+
 document.addEventListener("DOMContentLoaded", () => {
     fetch("https://otakudesu.natee.me/api/genre")
         .then((res) => { return res.json(); })
