@@ -107,7 +107,7 @@ export default function ClientEpisode({ anime }: { anime: any }) {
             </select>
 
             <p className='text-xs flex justify-end'>Rekomendasi: odstream</p>
-
+            <p className='mt-4 font-bold text-lg'>Download</p>
             {anime.download &&
                 Object.entries(anime.download as Record<string, { nama: string; href: string }[]>).map(
                     ([key, downloads]) => {
@@ -115,7 +115,7 @@ export default function ClientEpisode({ anime }: { anime: any }) {
                         const label = match ? `${match[1]}${match[2].toUpperCase()} ${match[3].toUpperCase()}` : key;
 
                         return (
-                            <div key={key} className="mt-4">
+                            <div key={key}>
                                 <h3 className="font-semibold text-sm mb-2">{label}</h3>
                                 {downloads.length === 0 ? (
                                     <p className="text-gray-500 text-sm italic">Belum tersedia</p>
