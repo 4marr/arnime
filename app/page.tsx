@@ -9,7 +9,7 @@ export default function Home() {
     const [filter, setFilter] = useState({ type: 'genre', value: 'ongoing' });
 
     return (
-        <div className='py-5 px-5 lg:px-28 pb-5'>
+        <div className='pb-5 px-5 lg:px-28'>
             <Header />
             <NavBar
                 onGenreChange={(genre) => setFilter({ type: 'genre', value: genre })}

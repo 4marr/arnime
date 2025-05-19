@@ -57,9 +57,9 @@ export default function ClientEpisode({ anime }: { anime: any }) {
     };
 
     return (
-        <div className="flex flex-col justify-center py-5 px-5 lg:px-28">
+        <div className="flex flex-col justify-center pb-5 px-5 lg:px-28">
             <Header />
-            <h2 className="text-lg font-semibold mb-4">{anime.judul}</h2>
+            <h2 className="text-lg font-semibold mb-4 mt-5">{anime.judul}</h2>
 
             <div className="w-full h-0 pb-[56.25%] relative mb-4">
                 {loading && (
@@ -107,7 +107,7 @@ export default function ClientEpisode({ anime }: { anime: any }) {
             </select>
 
             <p className='text-xs flex justify-end'>Rekomendasi: odstream</p>
-            <p className='mt-4 font-bold text-lg'>Download</p>
+            <p className='mt-4 font-bold text-lg'>Download Video</p>
             {anime.download &&
                 Object.entries(anime.download as Record<string, { nama: string; href: string }[]>).map(
                     ([key, downloads]) => {
@@ -116,7 +116,7 @@ export default function ClientEpisode({ anime }: { anime: any }) {
 
                         return (
                             <div key={key}>
-                                <h3 className="font-semibold text-sm mb-2">{label}</h3>
+                                <h3 className="font-semibold text-sm mb-2 mt-4">{label}</h3>
                                 {downloads.length === 0 ? (
                                     <p className="text-gray-500 text-sm italic">Belum tersedia</p>
                                 ) : (
