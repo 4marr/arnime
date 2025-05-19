@@ -14,9 +14,9 @@ export default async function AnimePage({ params }: { params: any}) {
     const anime = await res.json();
 
     return (
-        <div className='py-5 px-5 lg:px-28'>
+        <div className='pb-5 px-5 lg:px-28'>
             <Header />
-            <div className="flex flex-col sm:flex-row justify-center sm:justify-start gap-4">
+            <div className="flex flex-col sm:flex-row justify-center sm:justify-start gap-4 mt-5">
                 <div className="flex justify-center">
                     <img
                         src={anime.gambar}
